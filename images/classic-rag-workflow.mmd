@@ -1,0 +1,24 @@
+
+flowchart TD
+
+    subgraph INGEST["Document Ingestion"]
+        A["PDF Documents"] --> B["PyPDFLoader"]
+        B --> C["Text Splitting"]
+        C --> D["Embeddings"]
+        D --> E[("ChromaDB")]
+    end
+
+    subgraph QUERY["Query Pipeline"]
+        F["User Query"] --> G["Retriever"]
+        G --> E
+        E --> H["Top-K Chunks"]
+        H --> I{"Relevance Guard"}
+
+        I -->|Relevant| J["Build Context"]
+        I -->|Not Relevant| K["Fallback Response"]
+
+        J --> L["RAG Prompt"]
+        L --> M["LLM"]
+        M --> N["Final Answer"]
+        N --> O["Source Citations"]
+    end
