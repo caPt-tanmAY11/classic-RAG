@@ -107,7 +107,11 @@ classic-rag/
 │
 ├── images/
 │   ├── classic-rag-workflow.png   # Architecture diagram
-│   └── classic-rag-workflow.mmd   # Mermaid source for diagram
+│   ├── classic-rag-workflow.mmd   # Mermaid source for diagram
+│   ├── cli-demo-ss1.png           # CLI demo screenshot
+│   ├── cli-demo-ss2.png           # CLI demo screenshot
+│   ├── cli-demo-ss3.png           # CLI demo screenshot
+│   └── langsmith-trace.png        # LangSmith trace screenshot
 │
 ├── scripts/
 │   ├── generate_diagram.py        # Generates the architecture PNG from Mermaid
@@ -244,14 +248,14 @@ uv run python -m src.main
 The CLI displays an introductory banner and waits for your questions:
 
 ```
-╭──────────── 🤖 AI Assistant ────────────╮
-│ 📚 Classic RAG                          │
-│                                         │
-│ Ask questions about your document       │
-│ collection.                             │
-│                                         │
-│ Type 'exit' to quit.                    │
-╰─────────────────────────────────────────╯
+╭──────────── AI Assistant ────────────╮
+│ Classic RAG                          │
+│                                      │
+│ Ask questions about your document    │
+│ collection.                          │
+│                                      │
+│ Type 'exit' to quit.                 │
+╰──────────────────────────────────────╯
 ```
 
 ### Asking a Relevant Question
@@ -261,24 +265,25 @@ When the query matches content in your documents, the system retrieves relevant 
 ```
 You: What are the key principles of transformer architecture?
 
-──────── 🔍 Retrieving Relevant Documents ────────
+──────── Retrieving Relevant Documents ────────
 
-╭─────────── 📄 Retrieved Chunk #1 ───────────╮
-│ Source: attention-is-all-you-need.pdf        │
-│ Page: 3                                      │
-│ Score: 0.4521                                │
-│                                              │
-│ The Transformer follows an encoder-decoder   │
-│ structure using stacked self-attention and... │
-╰──────────────────────────────────────────────╯
+╭─────────── Retrieved Chunk #1 ───────────╮
+│ Source: attention-is-all-you-need.pdf     │
+│ Page: 3                                  │
+│ Score: 0.4521                            │
+│                                          │
+│ The Transformer follows an encoder-      │
+│ decoder structure using stacked self-     │
+│ attention and...                         │
+╰──────────────────────────────────────────╯
 
-╭───────────── 💬 Final Answer ──────────────╮
-│ The key principles of the transformer      │
-│ architecture include self-attention         │
-│ mechanisms, positional encoding...          │
-╰────────────────────────────────────────────╯
+╭───────────── Final Answer ──────────────╮
+│ The key principles of the transformer   │
+│ architecture include self-attention      │
+│ mechanisms, positional encoding...       │
+╰─────────────────────────────────────────╯
 
-──────────────── 📚 Sources ─────────────────
+──────────────── Sources ─────────────────
 [1] attention-is-all-you-need.pdf — Page 4
 [2] attention-is-all-you-need.pdf — Page 7
 ```
@@ -290,12 +295,12 @@ When the query doesn't match your documents, the relevance guard filters out all
 ```
 You: What is the capital of France?
 
-──────── 🔍 Retrieving Relevant Documents ────────
+──────── Retrieving Relevant Documents ────────
 
-╭───────────── 💬 Final Answer ──────────────╮
-│ I couldn't find the answer in the provided │
-│ documents.                                 │
-╰────────────────────────────────────────────╯
+╭───────────── Final Answer ──────────────╮
+│ I couldn't find the answer in the       │
+│ provided documents.                     │
+╰─────────────────────────────────────────╯
 ```
 
 ### Exiting
@@ -315,6 +320,16 @@ Press `Ctrl+C` at any time for a clean exit:
 
 👋 Goodbye!
 ```
+
+## 🖥️ CLI Demo
+
+The Rich-powered CLI provides clear visual separation between retrieval results, answers, and source citations:
+
+![CLI Demo — Relevant Query](images/cli-demo-ss1.png)
+
+![CLI Demo — Answer and Sources](images/cli-demo-ss2.png)
+
+![CLI Demo — Irrelevant Query](images/cli-demo-ss3.png)
 
 ## 🛡️ Relevance / Hallucination Guard
 
@@ -389,6 +404,8 @@ RAG Pipeline
 ```
 
 When the relevance guard filters out all chunks, the trace stops after `Retrieve Documents` — there is no prompt construction or LLM call. This makes it easy to identify and debug irrelevant query handling in the LangSmith dashboard.
+
+![LangSmith Trace](images/langsmith-trace.png)
 
 LangSmith is configured entirely through environment variables (`LANGSMITH_API_KEY`, `LANGSMITH_TRACING`, `LANGSMITH_ENDPOINT`, `LANGSMITH_PROJECT`). No additional code instrumentation is needed beyond the `@traceable` decorators.
 

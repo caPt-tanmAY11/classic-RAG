@@ -9,10 +9,10 @@ console = Console()
 def show_banner():
     console.print(
         Panel(
-            "[bold cyan]📚 Classic RAG[/bold cyan]\n\n"
+            "[bold cyan]Classic RAG[/bold cyan]\n\n"
             "Ask questions about your document collection.\n\n"
             "Type [bold]'exit'[/bold] to quit.",
-            title="🤖 AI Assistant",
+            title="AI Assistant",
             border_style="cyan",
             expand=False,
         )
@@ -22,7 +22,7 @@ def show_retrieval():
     console.print()
     console.print(
         Rule(
-            "[bold yellow]🔍 Retrieving Relevant Documents[/bold yellow]"
+            "[bold yellow]Retrieving Relevant Documents[/bold yellow]"
         )
     )
 
@@ -37,7 +37,7 @@ def show_chunk(index: int, doc, score: float):
     console.print(
         Panel(
             content,
-            title=f"📄 Retrieved Chunk #{index}",
+            title=f"Retrieved Chunk #{index}",
             border_style="green",
         )
     )
@@ -48,7 +48,7 @@ def show_answer(answer: str):
     console.print(
         Panel(
             answer,
-            title="💬 Final Answer",
+            title="Final Answer",
             border_style="cyan",
         )
     )
@@ -59,7 +59,7 @@ def show_sources(results):
 
     console.print()
     console.print(
-        Rule("[bold blue]📚 Sources[/bold blue]")
+        Rule("[bold blue]Sources[/bold blue]")
     )
 
     seen = set()
@@ -87,7 +87,7 @@ def show_error(message: str):
     console.print(
         Panel(
             message,
-            title="⚠️ Error",
+            title="ERROR",
             border_style="red",
         )
     )

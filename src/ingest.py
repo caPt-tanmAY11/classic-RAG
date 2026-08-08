@@ -58,7 +58,6 @@ if __name__ == "__main__":
         )
         shutil.rmtree(db_path)
 
-    # Load and split documents
     docs = load_documents()
     chunks = split_documents(docs)
 
@@ -67,7 +66,6 @@ if __name__ == "__main__":
 
     console.print("\n[cyan]Creating vector database...[/cyan]")
 
-    # Create vector database
     vector_store = create_vector_store(chunks)
 
     console.print("[green]Done![/green]")
