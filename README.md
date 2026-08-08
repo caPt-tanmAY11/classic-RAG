@@ -325,11 +325,11 @@ Press `Ctrl+C` at any time for a clean exit:
 
 The Rich-powered CLI provides clear visual separation between retrieval results, answers, and source citations:
 
-![CLI Demo — Relevant Query](images/cli-demo-ss1.png)
+![CLI Demo — Relevant Query](images/cli-demo-SS1.png)
 
-![CLI Demo — Answer and Sources](images/cli-demo-ss2.png)
+![CLI Demo — Answer and Sources](images/cli-demo-SS2.png)
 
-![CLI Demo — Irrelevant Query](images/cli-demo-ss3.png)
+![CLI Demo — Irrelevant Query](images/cli-demo-SS3.png)
 
 ## 🛡️ Relevance / Hallucination Guard
 
